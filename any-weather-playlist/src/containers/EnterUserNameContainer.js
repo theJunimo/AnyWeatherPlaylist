@@ -17,14 +17,16 @@ const EnterUserNameContainer = () => {
             try {
                 const geo = await getLatLngAPI();
                 const { lat, lng } = geo.data.location;
-
                 dispatch(getWeather(lat, lng));
             } catch (e) {
                 console.log(e);
             }
         }
-
+        
         fetchGetWeather();
+        setInterval(fetchGetWeather, 1000 * 60 * 30); // time interval: 30mins
+
+        return () => clearInterval(fetchGetWeather);
     },[dispatch])
 
     return(
