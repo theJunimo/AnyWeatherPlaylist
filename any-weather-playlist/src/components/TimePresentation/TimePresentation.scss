@@ -10,6 +10,8 @@
         font-size: 2rem;
         animation: blink 2s step-start 0s infinite;
         -webkit-animation: blink 2s step-start 0s infinite;
+        -moz-animation: blink 2s step-start 0s infinite;
+        -ms-animation: blink 2s step-start 0s infinite;
     }
 }
 
@@ -19,7 +21,19 @@
     }
 }
 
+@-moz-keyframes blink {
+    50% {
+        opacity: 0.0;
+    }
+}
+
 @-webkit-keyframes blink {
+    50% {
+        opacity: 0.0;
+    }
+}
+
+@-ms-keyframes blink {
     50% {
         opacity: 0.0;
     }
