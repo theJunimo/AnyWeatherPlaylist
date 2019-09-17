@@ -13,7 +13,7 @@ const SCWidget = () => {
 
     if(main === 'clear sky') {
         playListId = '871183640';
-    } else if(main === 'shower rain' || main === 'rain' ||main === 'thunderstorm' || main === 'mist') {
+    } else if(main === 'shower rain' || main === 'rain' ||main === 'thunderstorm') {
         playListId = '871190231'
     } else if(main === 'snow') {
         playListId = '871195301'

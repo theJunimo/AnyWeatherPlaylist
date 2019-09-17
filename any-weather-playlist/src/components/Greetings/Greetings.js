@@ -16,7 +16,7 @@ const Greetings = ({userName, weather}) => {
         } else if(type === 'shower rain' || type === 'rain' ||type === 'thunderstorm') {
             setMsg('Stay dry');
         } else if(type === 'snow') {
-            setMsg('HOORAY For Snow Days!');
+            setMsg('HOORAY for Snow Days!');
         } else if(type === 'haze' || type === 'dust' || type === 'mist') {
             setMsg("Today's weather is...¯\\_(ツ)_/¯")
         };

@@ -10,8 +10,8 @@ const GET_WEATHER_ERROR = 'base/GET_WEATHER_ERROR';
 const initialState = {
     userName: '',
     weather: {
-        main: 'Sunny',
-        temp: '27',
+        main: 'error',
+        temp: '0',
     }
 }
 
