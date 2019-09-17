@@ -24,7 +24,6 @@ const base = (state = initialState, action) => {
     switch(action.type) {
         case SAVE_USERNAME:
             const { userName } = action
-            console.log(action);
             return{
                 ...state,
                 userName
