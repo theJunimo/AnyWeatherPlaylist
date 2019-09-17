@@ -10,13 +10,19 @@ import { createLogger } from 'redux-logger';
 import { default as ReduxThunk } from 'redux-thunk';
 import { createPromise } from 'redux-promise-middleware';
 
-const logger = createLogger();
+let logger;
+
+if (process.env.NODE_ENV !== 'production') {
+    logger = createLogger();
+}
+
 const pm = createPromise({
     promiseTypeSuffixes: ['LOADING', 'SUCCESS', 'ERROR']
 });
+
 const reducers = combineReducers(modules);
 
-const store = createStore(reducers, applyMiddleware(logger, ReduxThunk, pm));
+const store = createStore(reducers, applyMiddleware(logger? logger : null, ReduxThunk, pm));
 
 const Root = () => {
     return (
