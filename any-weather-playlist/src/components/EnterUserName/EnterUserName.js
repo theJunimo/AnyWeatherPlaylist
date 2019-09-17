@@ -12,7 +12,10 @@ const EnterUserName = ({onSavingUserName}) => {
             const { keyCode } = event;
         
             if (keyCode === 13) {
-              const userName = inputEl.current.value;
+              let userName = inputEl.current.value;
+              if(userName.length > 12) {
+                userName = userName.slice(0, 13);
+              }
               onSavingUserName(userName);
             }
         };
@@ -23,10 +26,6 @@ const EnterUserName = ({onSavingUserName}) => {
           window.removeEventListener('keydown', handleUserKeyPress);
         };
       }, [onSavingUserName]);
-
-      useEffect(() => {
-          
-      })
 
     return(
         <div className = { cx('EnterUserName') }>

@@ -1,6 +1,8 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { getLatLngAPI } from 'lib/api';
 import EnterUserName from 'components/EnterUserName';
+import { getWeather } from 'stores/modules/base';
 
 const EnterUserNameContainer = () => {
     const dispatch = useDispatch();
@@ -9,6 +11,21 @@ const EnterUserNameContainer = () => {
         (userName) => dispatch({type: 'base/SAVE_USERNAME', userName}),
         [dispatch]
     )
+
+    useEffect(() => {
+        async function fetchGetWeather() {
+            try {
+                const geo = await getLatLngAPI();
+                const { lat, lng } = geo.data.location;
+
+                dispatch(getWeather(lat, lng));
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        fetchGetWeather();
+    },[dispatch])
 
     return(
         <EnterUserName

@@ -1,0 +1,31 @@
+
+.WeatherPresentation {
+    margin-top: 1rem;
+    
+    .inner-wrapper{
+        display: flex;
+        justify-content: center;
+        .icon {
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+
+            img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            .type {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+            .temp {
+                font-size: 2rem;
+            }
+        }
+    }
+}

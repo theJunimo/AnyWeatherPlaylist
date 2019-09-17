@@ -2,14 +2,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PageTemplate from 'components/PageTemplate';
 import EnterUserNameContainer from 'containers/EnterUserNameContainer';
-import MainWrapperContainer from 'containers/MainWrapperContainer';
+import MainWrapper from 'components/MainWrapper';
 
 const PageTemplateContainer = () => {
-    const { userName } = useSelector(state => state.base, []);
+    const { userName } = useSelector(state => state.base);
 
     return(
         <PageTemplate>
-            {!userName? <EnterUserNameContainer/> : <MainWrapperContainer/> }
+            {!userName? <EnterUserNameContainer/> : <MainWrapper/> }
         </PageTemplate>
     )
 }

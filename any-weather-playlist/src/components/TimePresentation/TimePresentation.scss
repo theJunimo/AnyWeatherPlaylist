@@ -1,0 +1,26 @@
+
+.TimePresentation {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+
+    .colon {
+        margin: 0 0.5rem;
+        font-size: 2rem;
+        animation: blink 2s step-start 0s infinite;
+        -webkit-animation: blink 2s step-start 0s infinite;
+    }
+}
+
+@keyframes blink {
+    50% {
+      opacity: 0.0;
+    }
+}
+
+@-webkit-keyframes blink {
+    50% {
+        opacity: 0.0;
+    }
+}
