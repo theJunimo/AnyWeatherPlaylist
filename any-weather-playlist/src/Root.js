@@ -9,20 +9,24 @@ import * as modules from 'stores/modules';
 import { createLogger } from 'redux-logger';
 import { default as ReduxThunk } from 'redux-thunk';
 import { createPromise } from 'redux-promise-middleware';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-let logger;
-
-if (process.env.NODE_ENV !== 'production') {
-    logger = createLogger();
-}
+let middleware;
 
 const pm = createPromise({
     promiseTypeSuffixes: ['LOADING', 'SUCCESS', 'ERROR']
 });
 
+if (process.env.NODE_ENV !== 'production') {
+    const logger = createLogger();
+    middleware = composeWithDevTools(applyMiddleware(logger, ReduxThunk, pm));
+} else {
+    middleware = applyMiddleware(ReduxThunk, pm);
+}
+
 const reducers = combineReducers(modules);
 
-const store = createStore(reducers, applyMiddleware(logger? logger : null, ReduxThunk, pm));
+const store = createStore(reducers, middleware);
 
 const Root = () => {
     return (
