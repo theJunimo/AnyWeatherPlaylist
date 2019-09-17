@@ -14,7 +14,7 @@ const EnterUserName = ({onSavingUserName}) => {
             if (keyCode === 13) {
               let userName = inputEl.current.value;
               if(userName.length > 12) {
-                userName = userName.slice(0, 13);
+                userName = userName.slice(0, 13); 
               }
               onSavingUserName(userName);
             }
@@ -32,9 +32,11 @@ const EnterUserName = ({onSavingUserName}) => {
             <div className = { cx('content')}>
                 <p>Welcome,</p>
                 <div className = { cx('username-div')}>
-                <input type = "text" autoFocus ref = { inputEl }></input>
+                  <div className = { cx('username-input')}>
+                  <input type = "text" autoFocus ref = { inputEl }></input>
+                  </div>
+                  <span>!</span>
                 </div>
-                <span>!</span>
             </div>
         </div>
     )
