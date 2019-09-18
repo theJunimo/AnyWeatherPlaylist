@@ -11,7 +11,7 @@ const SCWidget = () => {
 
     let playListId = '871176140';
 
-    if(main === 'clear sky') {
+    if(main === 'clear sky' || main === 'clear') {
         playListId = '871183640';
     } else if(main === 'shower rain' || main === 'rain' ||main === 'thunderstorm') {
         playListId = '871190231'
