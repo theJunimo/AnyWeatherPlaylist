@@ -10,7 +10,7 @@ const WeatherPresentation = ({ weather }) => {
     
     let iconURL = '/weatherIcon/thermometer.svg'
 
-    if(type === 'clear sky') {
+    if(type === 'clear sky' || type === 'clear') {
         iconURL = '/weatherIcon/sunny.svg'
 
     } else if (type === 'few clouds' || type === 'scattered cloud' || type === 'broken clouds') {
