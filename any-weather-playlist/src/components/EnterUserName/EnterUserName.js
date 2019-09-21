@@ -7,25 +7,25 @@ const cx = classNames.bind(styles);
 const EnterUserName = ({onSavingUserName}) => {
     const inputEl = useRef(null);
 
-      useEffect(() => {
-        const handleUserKeyPress = (event) => {
-            const { keyCode } = event;
-        
-            if (keyCode === 13) {
-              let userName = inputEl.current.value;
-              if(userName.length > 12) {
-                userName = userName.slice(0, 13); 
-              }
-              onSavingUserName(userName);
+    useEffect(() => {
+      const handleUserKeyPress = (event) => {
+          const { keyCode } = event;
+      
+          if (keyCode === 13) {
+            let userName = inputEl.current.value;
+            if(userName.length > 12) {
+              userName = userName.slice(0, 13); 
             }
-        };
+            onSavingUserName(userName);
+          }
+      };
 
-        window.addEventListener('keydown', handleUserKeyPress);
-    
-        return () => {
-          window.removeEventListener('keydown', handleUserKeyPress);
-        };
-      }, [onSavingUserName]);
+      window.addEventListener('keydown', handleUserKeyPress);
+  
+      return () => {
+        window.removeEventListener('keydown', handleUserKeyPress);
+      };
+    }, [onSavingUserName]);
 
     return(
         <div className = { cx('EnterUserName') }>
