@@ -1,5 +1,6 @@
 # ⛅ AnyWeatherPlaylist
-
+![demo](./readme_image/demo.gif)
+   
 wherever you are, this playlist would be perfect for today's weather!   
 당신이 어느곳에 있든, 오늘의 날씨에 맞는 soundcloud playlist를 재생시켜줍니다!   
 
@@ -19,8 +20,12 @@ wherever you are, this playlist would be perfect for today's weather!
 * 시간 보여주기   
 * 날씨에 따라 플레이리스트 재생   
 
-## 사용된 기술 스택
-* React, Redux, SCSS   
-* 비동기 요청 : axios, Redux-thunk,  Redux-thunk-promise   
-* 반응형 웹: include-media   
-* Google Geolocation API, OpenWeatherMap API
+## 기술 스택
+### Client
+* React
+* React-redux
+* Redux-thunk
+* SCSS
+* include-media(responsive web)
+* Google Geolocation API
+* OpenWeatherMap API
