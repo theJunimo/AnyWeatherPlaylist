@@ -1,36 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './WeatherPresentation.scss';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
 const WeatherPresentation = ({ weather }) => {
-    const { temp, main } = weather;
-    let type = main.toLowerCase();
-    
-    let iconURL = '/weatherIcon/thermometer.svg'
+    const [iconURL, setIconURL] = useState('/weatherIcon/thermometer.svg');
+    const [type, setType] = useState(weather.main);
 
-    if(type === 'clear sky' || type === 'clear') {
-        iconURL = '/weatherIcon/sunny.svg'
+    useEffect(() => {
+        const { main } = weather;
+        const type = main.toLowerCase();
 
-    } else if (type === 'few clouds' || type === 'scattered cloud' || type === 'broken clouds') {
-        iconURL = '/weatherIcon/cloud.svg'
-
-    } else if(type === 'shower rain' || type === 'rain') {
-        iconURL = '/weatherIcon/rain.svg'
-
-    } else if(type === 'snow') {
-        iconURL = '/weatherIcon/snow.svg'
-
-    } else if(type === 'haze' || type === 'dust' || type === 'mist') {
-        iconURL = '/weatherIcon/hazy.svg'
-
-    } else if(type === 'thunderstorm') {
-        iconURL = '/weatherIcon/thunderstorm.svg'
-    }
-
-
-    type = main.charAt(0).toUpperCase() + main.slice(1);
+        if(type === 'clear sky' || type === 'clear') {
+            setIconURL('/weatherIcon/sunny.svg');
+        } else if (type === 'clouds') {
+            setIconURL('/weatherIcon/cloud.svg');
+        } else if(type === 'shower rain' || type === 'rain') {
+            setIconURL('/weatherIcon/rain.svg');
+        } else if(type === 'snow') {
+            setIconURL('/weatherIcon/snow.svg');
+        } else if(type === 'haze' || type === 'dust' || type === 'mist') {
+            setIconURL('/weatherIcon/hazy.svg');
+        } else if(type === 'thunderstorm') {
+            setIconURL('/weatherIcon/thunderstorm.svg');
+        } else {
+            setIconURL('/weatherIcon/thermometer.svg');
+        };
+    }, [weather]);
 
     return(
         <div className = { cx('WeatherPresentation') }>
@@ -40,7 +37,7 @@ const WeatherPresentation = ({ weather }) => {
                 </div>
                 <div className = { cx('content')}>
                     <span className = { cx('type') }>{ type }</span>
-                    <span className = { cx('temp') }>{ temp }°</span>
+                    <span className = { cx('temp') }>{ weather.temp }°</span>
                 </div>
             </div>
         </div>
