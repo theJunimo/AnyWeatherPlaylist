@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import styles from './EnterUserName.scss';
 import classNames from 'classnames/bind';
 
@@ -6,6 +6,7 @@ const cx = classNames.bind(styles);
 
 const EnterUserName = ({onSavingUserName}) => {
     const inputEl = useRef(null);
+    const [showMsg, setShowMsg] = useState(true);
 
     useEffect(() => {
       const handleUserKeyPress = (event) => {
@@ -27,14 +28,23 @@ const EnterUserName = ({onSavingUserName}) => {
       };
     }, [onSavingUserName]);
 
+    const handleMsgClick = useCallback(() => {
+      if(inputEl.current.value) {
+        setShowMsg(false);
+      } else {
+        setShowMsg(true);
+      }
+    }, []);
+
     return(
         <div className = { cx('EnterUserName') }>
             <div className = { cx('content')}>
                 <p>Welcome,</p>
                 <div className = { cx('username-div')}>
                   <div className = { cx('username-input')}>
-                  <input type = "text" autoFocus ref = { inputEl }></input>
+                  <input autoFocus type = "text"  ref = { inputEl } onChange = { handleMsgClick }></input>
                   </div>
+                  {showMsg && <span className = { cx('guide-msg')}>please enter your name :)</span>}
                   <span>!</span>
                 </div>
             </div>
