@@ -1,7 +1,8 @@
 import { getWeatherAPI } from 'lib/api';
 
-const SAVE_USERNAME = 'base/SAVE_USERNAME';
 
+const SAVE_USERNAME = 'base/SAVE_USERNAME';
+const ERROR_OCCURRED = 'base/ERROR_OCCURRED';
 const GET_WEATHER = 'base/GET_WEATHER';
 const GET_WEATHER_LOADING = 'base/GET_WEATHER_LOADING';
 const GET_WEATHER_SUCCESS = 'base/GET_WEATHER_SUCCESS';
@@ -28,6 +29,11 @@ const base = (state = initialState, action) => {
             return{
                 ...state,
                 userName
+            }
+        case ERROR_OCCURRED:
+            return {
+                ...state,
+                error: true
             }
         case GET_WEATHER_LOADING:
                 return {

@@ -19,7 +19,7 @@ const EnterUserNameContainer = () => {
                 const { lat, lng } = geo.data.location;
                 dispatch(getWeather(lat, lng));
             } catch (e) {
-                console.log(e);
+                dispatch({type: 'base/ERROR_OCCURRED'});
             }
         }
         
