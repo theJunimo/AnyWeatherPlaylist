@@ -8,6 +8,7 @@ const GET_WEATHER_SUCCESS = 'base/GET_WEATHER_SUCCESS';
 const GET_WEATHER_ERROR = 'base/GET_WEATHER_ERROR';
 
 const initialState = {
+    error: false,
     userName: '',
     weather: {
         main: 'error',
