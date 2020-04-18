@@ -3,13 +3,14 @@ import { useSelector } from 'react-redux';
 import PageTemplate from 'components/PageTemplate';
 import EnterUserNameContainer from 'containers/EnterUserNameContainer';
 import MainWrapper from 'components/MainWrapper';
+import ErrorMessage from 'components/ErrorMessage';
 
 const PageTemplateContainer = () => {
-    const { userName } = useSelector(state => state.base);
+    const { userName, error } = useSelector(state => state.base);
 
     return(
         <PageTemplate>
-            {!userName? <EnterUserNameContainer/> : <MainWrapper/> }
+            {error? <ErrorMessage/> : !userName? <EnterUserNameContainer/> : <MainWrapper/> }
         </PageTemplate>
     )
 }
