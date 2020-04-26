@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import { Provider } from "react-redux";
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 
 import { createLogger } from "redux-logger";
 import { default as ReduxThunk } from "redux-thunk";

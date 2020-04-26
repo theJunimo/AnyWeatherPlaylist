@@ -1,5 +1,4 @@
 import { getWeatherAPI } from "lib/api";
-import { Action } from "redux";
 
 //action type 설정
 const SAVE_USERNAME = "base/SAVE_USERNAME" as const;

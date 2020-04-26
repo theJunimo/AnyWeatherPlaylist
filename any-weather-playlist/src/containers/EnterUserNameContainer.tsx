@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getLatLngAPI } from "lib/api";
-
-import { getWeather } from "stores/modules/base";
 import EnterUserName from "components/EnterUserName";
+import { getWeather } from "stores/modules/base";
 
 const EnterUserNameContainer = () => {
     const dispatch = useDispatch();
