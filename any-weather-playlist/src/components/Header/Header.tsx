@@ -1,12 +1,9 @@
 import React from 'react';
-import styles from './Header.scss';
-import classNames from 'classnames/bind';
-
-const cx = classNames.bind(styles);
+import './Header.scss';
 
 const Header = () => {
     return(
-        <header className = { cx('Header')}>
+        <header className = 'Header'>
                 <h1>
                 AnyWeatherPlayList
                 </h1>
