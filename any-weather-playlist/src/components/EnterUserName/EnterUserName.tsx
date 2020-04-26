@@ -1,23 +1,24 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import styles from './EnterUserName.scss';
-import classNames from 'classnames/bind';
+import './EnterUserName.scss';
 
-const cx = classNames.bind(styles);
+type EnterUserNameProps = {
+  onSavingUserName:(userName: string) => void
+}
 
-const EnterUserName = ({onSavingUserName}) => {
-    const inputEl = useRef(null);
+const EnterUserName = ({onSavingUserName}: EnterUserNameProps) => {
+    const inputEl = useRef<HTMLInputElement>(null);
     const [showMsg, setShowMsg] = useState(true);
 
     useEffect(() => {
-      const handleUserKeyPress = (event) => {
-          const { keyCode } = event;
+      const handleUserKeyPress = (e: KeyboardEvent) => {
+          const { keyCode } = e;
       
           if (keyCode === 13) {
-            let userName = inputEl.current.value;
-            if(userName.length > 12) {
-              userName = userName.slice(0, 13); 
+            let userName = inputEl?.current?.value;
+            if(userName && userName.length > 12) {
+              userName = userName.slice(0, 13);
+              onSavingUserName(userName);
             }
-            onSavingUserName(userName);
           }
       };
 
@@ -29,7 +30,7 @@ const EnterUserName = ({onSavingUserName}) => {
     }, [onSavingUserName]);
 
     const handleMsgClick = useCallback(() => {
-      if(inputEl.current.value) {
+      if(inputEl.current && inputEl.current.value) {
         setShowMsg(false);
       } else {
         setShowMsg(true);
@@ -37,14 +38,14 @@ const EnterUserName = ({onSavingUserName}) => {
     }, []);
 
     return(
-        <div className = { cx('EnterUserName') }>
-            <div className = { cx('content')}>
+        <div className = 'EnterUserName'>
+            <div className = 'content'>
                 <p>Welcome,</p>
-                <div className = { cx('username-div')}>
-                  <div className = { cx('username-input')}>
+                <div className = 'username-div'>
+                  <div className = 'username-input'>
                   <input autoFocus type = "text"  ref = { inputEl } onChange = { handleMsgClick }></input>
                   </div>
-                  {showMsg && <span className = { cx('guide-msg')}>please enter your name :)</span>}
+                  {showMsg && <span className = 'guide-msg'>please enter your name :)</span>}
                   <span>!</span>
                 </div>
             </div>
