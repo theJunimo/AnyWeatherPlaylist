@@ -1,18 +1,16 @@
-import React, { ReactNode } from 'react';
-import './PageTemplate.scss';
+import React, { ReactNode } from "react";
+import "./PageTemplate.scss";
 
 type PageTemplateProps = {
-    children: ReactNode
-}
+    children: ReactNode;
+};
 
-const PageTemplate = ({children} :PageTemplateProps) => {
+const PageTemplate = ({ children }: PageTemplateProps) => {
     return (
-        <div className = 'PageTemplate'>
-            <main>
-                {children}
-            </main>
+        <div className="PageTemplate">
+            <main>{children}</main>
         </div>
-    )
+    );
 };
 
 export default PageTemplate;

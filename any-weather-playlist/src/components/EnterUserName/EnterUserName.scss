@@ -1,4 +1,4 @@
-@import 'styles/utils';
+@import "styles/utils";
 
 .EnterUserName {
     display: flex;
@@ -8,20 +8,21 @@
     color: gray;
     font-weight: 600;
 
-    .content{
+    .content {
         display: flex;
         color: black;
         font-size: 3rem;
-        
+
         @include media("<med") {
             flex-direction: column;
-        } 
+        }
 
-        p, span {
+        p,
+        span {
             margin: auto;
         }
 
-        .username-div{
+        .username-div {
             position: relative;
             display: flex;
 

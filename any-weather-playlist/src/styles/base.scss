@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Lato|Vollkorn&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lato|Vollkorn&display=swap");
 
 body {
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-//box-sizing 일괄 설정하기  
+//box-sizing 일괄 설정하기
 //If you set box-sizing: border-box; on an element padding and border are included in the width and height
 * {
     box-sizing: inherit;
 }
 
 ul {
-    list-style-type : none;
+    list-style-type: none;
     margin: 0;
     padding: 0;
 }

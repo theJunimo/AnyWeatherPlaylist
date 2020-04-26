@@ -1,6 +1,6 @@
-@import 'styles/utils';
+@import "styles/utils";
 
-.Greetings{
+.Greetings {
     margin: auto;
     margin-top: 2rem;
     font-size: 1.2rem;
@@ -13,10 +13,9 @@
         span {
             text-align: center;
         }
-        
+
         @include media("<sm") {
             flex-direction: column;
-        } 
+        }
     }
 }
-

@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import base from './base';
+import { combineReducers } from "redux";
+import base from "./base";
 
 const rootReducer = combineReducers({
-  base
+    base,
 });
 
 export default rootReducer;
