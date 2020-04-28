@@ -8,9 +8,14 @@ import SCWidget from "components/SCWidget";
 import TimePresentation from "components/TimePresentation";
 import { useSelector } from "react-redux";
 
-const MainWrapper = () => {
-    const { userName, weather } = useSelector((state: RootState) => state.base);
-
+type MainWrapperProps = {
+    userName: string;
+    weather: {
+        main: string;
+        temp: number;
+    };
+};
+const MainWrapper = ({ userName, weather }: MainWrapperProps) => {
     return (
         <div className="MainWrapper">
             <div className="slide-up">
