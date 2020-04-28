@@ -11,7 +11,7 @@ const GET_WEATHER_ERROR = "base/GET_WEATHER_ERROR" as const;
 //action 생성함수
 export const saveUserName = (userName: string) => ({ type: SAVE_USERNAME, payload: userName });
 export const errorOccurred = () => ({ type: ERROR_OCCURRED });
-export const getWeather = (lat: number, lng: number) => ({ type: GET_WEATHER, payload: getWeatherAPI(lat, lng) });
+export const getWeather = (weather: any) => ({ type: GET_WEATHER, payload: weather });
 export const getWeatherLoading = () => ({ type: GET_WEATHER_LOADING });
 export const getWeatherSuccess = (data: { main: string; temp: number }) => ({
     type: GET_WEATHER_SUCCESS,
@@ -51,10 +51,10 @@ const initialState = {
 const base = (state: InitialStateType = initialState, action: ActionType) => {
     switch (action.type) {
         case SAVE_USERNAME:
-            const name = action.payload;
+            const userName = action.payload;
             return {
                 ...state,
-                name,
+                userName,
             };
         case ERROR_OCCURRED:
             return {
@@ -83,10 +83,7 @@ const base = (state: InitialStateType = initialState, action: ActionType) => {
         case GET_WEATHER_ERROR:
             return {
                 ...state,
-                weather: {
-                    temp: 0,
-                    main: "Error has occurred. please retry.",
-                },
+                erorr: true,
             };
         default:
             return initialState;

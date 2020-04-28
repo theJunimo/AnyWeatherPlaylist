@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import PageTemplate from "components/PageTemplate";
-
-import MainWrapper from "components/MainWrapper";
-
-import EnterUserNameContainer from "./EnterUserNameContainer";
-import ErrorMessage from "components/ErrorMessage";
 import { RootState } from "stores/modules";
+import ErrorMessage from "components/ErrorMessage";
+import PageTemplate from "components/PageTemplate";
+import EnterUserNameContainer from "./EnterUserNameContainer";
+import MainWrapperContainer from "./MainWrapperContainer";
 
 const PageTemplateContainer = () => {
-    const { userName, error } = useSelector((state: RootState) => state.base);
+    const { error, userName } = useSelector((state: RootState) => state.base);
 
     return (
         <PageTemplate>
-            {error ? <ErrorMessage /> : !userName ? <EnterUserNameContainer /> : <MainWrapper />}
+            {error ? <ErrorMessage /> : !userName ? <EnterUserNameContainer /> : <MainWrapperContainer />}
         </PageTemplate>
     );
 };
