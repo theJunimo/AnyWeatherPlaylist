@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./EnterUserName.scss";
 
 type EnterUserNameProps = {
@@ -12,30 +12,27 @@ const EnterUserName = ({ onSavingUserName }: EnterUserNameProps) => {
     useEffect(() => {
         const handleUserKeyPress = (e: KeyboardEvent) => {
             const { keyCode } = e;
-
             if (keyCode === 13) {
-                let userName = inputEl?.current?.value;
-                if (userName && userName.length > 12) {
-                    userName = userName.slice(0, 13);
-                    onSavingUserName(userName);
+                if (inputEl.current && inputEl.current.value) {
+                    const userName = inputEl.current.value;
+                    userName.length > 12 ? onSavingUserName(userName.slice(0, 13)) : onSavingUserName(userName);
                 }
             }
         };
 
         window.addEventListener("keydown", handleUserKeyPress);
-
         return () => {
             window.removeEventListener("keydown", handleUserKeyPress);
         };
     }, [onSavingUserName]);
 
-    const handleMsgClick = useCallback(() => {
+    const handleMsgClick = () => {
         if (inputEl.current && inputEl.current.value) {
             setShowMsg(false);
         } else {
             setShowMsg(true);
         }
-    }, []);
+    };
 
     return (
         <div className="EnterUserName">
