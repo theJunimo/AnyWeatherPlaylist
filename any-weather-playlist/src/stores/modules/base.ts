@@ -4,28 +4,14 @@ import { getWeatherAPI } from "lib/api";
 const SAVE_USERNAME = "base/SAVE_USERNAME" as const;
 const ERROR_OCCURRED = "base/ERROR_OCCURRED" as const;
 const GET_WEATHER = "base/GET_WEATHER" as const;
-const GET_WEATHER_LOADING = "base/GET_WEATHER_LOADING" as const;
-const GET_WEATHER_SUCCESS = "base/GET_WEATHER_SUCCESS" as const;
-const GET_WEATHER_ERROR = "base/GET_WEATHER_ERROR" as const;
 
 //action 생성함수
 export const saveUserName = (userName: string) => ({ type: SAVE_USERNAME, payload: userName });
 export const errorOccurred = () => ({ type: ERROR_OCCURRED });
 export const getWeather = (weather: any) => ({ type: GET_WEATHER, payload: weather });
-export const getWeatherLoading = () => ({ type: GET_WEATHER_LOADING });
-export const getWeatherSuccess = (data: { main: string; temp: number }) => ({
-    type: GET_WEATHER_SUCCESS,
-    payload: data,
-});
-export const getWeatherError = () => ({ type: GET_WEATHER_ERROR });
 
 //action객체에 대한 ts type
-type ActionType =
-    | ReturnType<typeof saveUserName>
-    | ReturnType<typeof errorOccurred>
-    | ReturnType<typeof getWeatherSuccess>
-    | ReturnType<typeof getWeatherLoading>
-    | ReturnType<typeof getWeatherError>;
+type ActionType = ReturnType<typeof saveUserName> | ReturnType<typeof getWeather> | ReturnType<typeof errorOccurred>;
 
 //initialState 타입 설정
 type InitialStateType = {
@@ -61,29 +47,13 @@ const base = (state: InitialStateType = initialState, action: ActionType) => {
                 ...state,
                 error: true,
             };
-        case GET_WEATHER_LOADING:
-            return {
-                ...state,
-                weather: {
-                    temp: 0,
-                    main: "loading...",
-                },
-            };
-        case GET_WEATHER_SUCCESS:
+        case GET_WEATHER:
             const data = action.payload;
-            const temp = Math.ceil(data.temp - 273.15);
-            const main = data.main;
             return {
                 ...state,
                 weather: {
-                    temp,
-                    main,
+                    ...data,
                 },
-            };
-        case GET_WEATHER_ERROR:
-            return {
-                ...state,
-                erorr: true,
             };
         default:
             return initialState;

@@ -16,8 +16,11 @@ const MainWrapperContainer = () => {
                 // const { lat, lng } = geo.data.location;
                 // google cloud platform 무료 크레딧 종료로 고정된 lat, long 값 넣어줌
                 const response = await getWeatherAPI(37.566536, 126.977966);
-                const data = { weather: response.data.weather[0].main, temp: response.data.main.temp };
-                dispatch(getWeather(data));
+                const weather = {
+                    main: response.data.weather[0].main,
+                    temp: Math.ceil((response.data.main.temp - 32) / 1.8),
+                };
+                dispatch(getWeather(weather));
             } catch (e) {
                 dispatch({ type: "base/ERROR_OCCURRED" });
             }
@@ -29,7 +32,6 @@ const MainWrapperContainer = () => {
                 // const { lat, lng } = geo.data.location;
                 // google cloud platform 무료 크레딧 종료로 고정된 lat, long 값 넣어줌
                 const weather = await getWeatherAPI(37.566536, 126.977966);
-                console.log("weather", weather);
                 dispatch(getWeather(weather));
             } catch (e) {
                 dispatch({ type: "base/ERROR_OCCURRED" });

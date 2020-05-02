@@ -5,23 +5,15 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 
 import { createLogger } from "redux-logger";
-import { default as ReduxThunk } from "redux-thunk";
-import { createPromise } from "redux-promise-middleware";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "stores/modules";
 import App from "components/App";
 
 let middleware;
 
-const pm = createPromise({
-    promiseTypeSuffixes: ["LOADING", "SUCCESS", "ERROR"],
-});
-
 if (process.env.NODE_ENV !== "production") {
     const logger = createLogger();
-    middleware = composeWithDevTools(applyMiddleware(logger, ReduxThunk, pm));
-} else {
-    middleware = applyMiddleware(ReduxThunk, pm);
+    middleware = composeWithDevTools(applyMiddleware(logger));
 }
 
 const store = createStore(rootReducer, middleware);
