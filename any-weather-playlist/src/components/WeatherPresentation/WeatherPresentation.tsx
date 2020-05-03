@@ -9,15 +9,15 @@ const WeatherPresentation = ({ weather, temp }: WeatherPresentationProps) => {
     const [iconURL, setIconURL] = useState("/weatherIcon/thermometer.svg");
 
     useEffect(() => {
-        if (weather === "clear sky" || weather === "clear") {
+        if (["clear sky", "clear"].includes(weather)) {
             setIconURL("/weatherIcon/sunny.svg");
         } else if (weather === "clouds") {
             setIconURL("/weatherIcon/cloud.svg");
-        } else if (weather === "shower rain" || weather === "rain") {
+        } else if (["shower rain", "rain"].includes(weather)) {
             setIconURL("/weatherIcon/rain.svg");
         } else if (weather === "snow") {
             setIconURL("/weatherIcon/snow.svg");
-        } else if (weather === "haze" || weather === "dust" || weather === "mist") {
+        } else if (["haze", "dust", "mist"].includes(weather)) {
             setIconURL("/weatherIcon/hazy.svg");
         } else if (weather === "thunderstorm") {
             setIconURL("/weatherIcon/thunderstorm.svg");

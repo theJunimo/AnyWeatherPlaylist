@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./Greetings.scss";
 
 type GreetingsProps = {
@@ -9,12 +9,14 @@ type GreetingsProps = {
 const Greetings = ({ userName, weather }: GreetingsProps) => {
     const [msg, setMsg] = useState("Welcome!");
 
-    const handleMsg = useCallback(() => {
+    useEffect(() => {
         if (weather === "clear sky") {
             setMsg("What a nice day!");
-        } else if (weather === "few clouds" || weather === "scattered cloud" || weather === "broken clouds") {
+        } else if (
+            ["clouds", "few clouds", "scattered clouds", "broken clouds"].includes(weather)
+        ) {
             setMsg("Everybody else shares the same cloudy sky.");
-        } else if (weather === "shower rain" || weather === "rain" || weather === "thunderstorm") {
+        } else if (["shower rain", "rain", "thunderstorm"].includes(weather)) {
             setMsg("Stay dry");
         } else if (weather === "snow") {
             setMsg("HOORAY for Snow Days!");

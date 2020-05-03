@@ -1,5 +1,3 @@
-import { getWeatherAPI } from "lib/api";
-
 //action type 설정
 const SAVE_USERNAME = "base/SAVE_USERNAME" as const;
 const ERROR_OCCURRED = "base/ERROR_OCCURRED" as const;
@@ -11,7 +9,10 @@ export const errorOccurred = () => ({ type: ERROR_OCCURRED });
 export const getWeather = (weather: any) => ({ type: GET_WEATHER, payload: weather });
 
 //action객체에 대한 ts type
-type ActionType = ReturnType<typeof saveUserName> | ReturnType<typeof getWeather> | ReturnType<typeof errorOccurred>;
+type ActionType =
+    | ReturnType<typeof saveUserName>
+    | ReturnType<typeof getWeather>
+    | ReturnType<typeof errorOccurred>;
 
 //initialState 타입 설정
 type InitialStateType = {

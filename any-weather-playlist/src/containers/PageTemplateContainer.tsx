@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "stores/modules";
 import ErrorMessage from "components/ErrorMessage";
@@ -11,7 +11,13 @@ const PageTemplateContainer = () => {
 
     return (
         <PageTemplate>
-            {error ? <ErrorMessage /> : !userName ? <EnterUserNameContainer /> : <MainWrapperContainer />}
+            {error ? (
+                <ErrorMessage />
+            ) : !userName ? (
+                <EnterUserNameContainer />
+            ) : (
+                <MainWrapperContainer />
+            )}
         </PageTemplate>
     );
 };

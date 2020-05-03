@@ -2,20 +2,24 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./SCWidget.scss";
 import { RootState } from "stores/modules";
+import { getSoundCloudURL } from "lib/api";
 
 const SCWidget = () => {
-    const { weather } = useSelector((state: RootState) => state.base);
-    const main = weather.main.toLowerCase();
+    const { main } = useSelector((state: RootState) => state.base.weather);
 
-    let playListId = "871176140";
-
-    if (main === "clear sky" || main === "clear") {
-        playListId = "871183640";
-    } else if (main === "shower rain" || main === "rain" || main === "thunderstorm") {
-        playListId = "871190231";
-    } else if (main === "snow") {
-        playListId = "871195301";
-    }
+    const getPlaylistURL = () => {
+        let playlist;
+        if (["clear sky", "clear"].includes(main)) {
+            playlist = 871183640;
+        } else if (["shower rain", "rain", "thunderstorm"].includes(main)) {
+            playlist = 871190231;
+        } else if (main === "snow") {
+            playlist = 871195301;
+        } else {
+            playlist = 871176140;
+        }
+        return getSoundCloudURL(playlist);
+    };
 
     return (
         <div className="SCWidget">
@@ -26,7 +30,7 @@ const SCWidget = () => {
                 scrolling="no"
                 frameBorder="no"
                 allow="autoplay"
-                src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/${playListId}&color=%23000000&auto_play=true&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true`}
+                src={getPlaylistURL()}
             ></iframe>
         </div>
     );
