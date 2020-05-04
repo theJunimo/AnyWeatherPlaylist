@@ -29,7 +29,7 @@ const MainWrapperContainer = () => {
         fetchGetWeather();
         const fetchGetWeatherInterval = setInterval(fetchGetWeather, 1000 * 60 * 30); // time interval: 30mins
         return () => clearInterval(fetchGetWeatherInterval);
-    }, []);
+    }, [dispatch]);
 
     return <MainWrapper userName={userName} weather={weather} />;
 };
