@@ -10,7 +10,7 @@ const Greetings = ({ userName, weather }: GreetingsProps) => {
     const [msg, setMsg] = useState("Welcome!");
 
     useEffect(() => {
-        if (weather === "clear sky") {
+        if (["clear sky", "clear"].includes(weather)) {
             setMsg("What a nice day!");
         } else if (
             ["clouds", "few clouds", "scattered clouds", "broken clouds"].includes(weather)
