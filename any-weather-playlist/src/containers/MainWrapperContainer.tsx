@@ -1,37 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MainWrapper from "components/MainWrapper";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "stores/modules";
-import { getWeather } from "stores/modules/base";
-import { getWeatherAPI } from "lib/api";
+import { fetchGetWeather } from "stores/modules/base";
 
 const MainWrapperContainer = () => {
-    const dispatch = useDispatch();
     const { userName, weather } = useSelector((state: RootState) => state.base);
+    const [message, setMessage] = useState("");
 
     useEffect(() => {
-        const fetchGetWeather = async () => {
-            try {
-                // const geo = await getLatLngAPI();
-                // const { lat, lng } = geo.data.location;
-                // google cloud platform 무료 크레딧 종료로 서울 날씨 가져오도록 수정
-                const response = await getWeatherAPI();
-                const weather = {
-                    main: response.data.weather[0].main.toLowerCase(),
-                    // kelvin to celcius formula
-                    temp: Math.ceil(response.data.main.temp - 273.15),
-                };
-                dispatch(getWeather(weather));
-            } catch (e) {
-                dispatch({ type: "base/ERROR_OCCURRED" });
-            }
-        };
         fetchGetWeather();
-        const fetchGetWeatherInterval = setInterval(fetchGetWeather, 1000 * 60 * 30); // time interval: 30mins
-        return () => clearInterval(fetchGetWeatherInterval);
-    }, [dispatch]);
+        if (["clear sky", "clear"].includes(weather)) {
+            setMessage("What a nice day!");
+        } else if (
+            ["clouds", "few clouds", "scattered clouds", "broken clouds"].includes(weather)
+        ) {
+            setMessage("Everybody else shares the same cloudy sky.");
+        } else if (["shower rain", "rain", "thunderstorm"].includes(weather)) {
+            setMessage("Stay dry");
+        } else if (weather === "snow") {
+            setMessage("HOORAY for Snow Days!");
+        } else {
+            setMessage("Today's weather is...¯\\_(ツ)_/¯");
+        }
+    }, [weather]);
 
-    return <MainWrapper userName={userName} weather={weather} />;
+    return <MainWrapper userName={userName} weather={weather} message={message} />;
 };
 
 export default MainWrapperContainer;

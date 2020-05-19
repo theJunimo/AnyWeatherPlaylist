@@ -1,10 +1,42 @@
 import React, { useState, useEffect } from "react";
-import "./WeatherPresentation.scss";
+import styled from "styled-components";
+
+const WeatherPresentationBlock = styled.div`
+    margin-top: 1rem;
+
+    .inner-wrapper {
+        display: flex;
+        justify-content: center;
+        .icon {
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+
+            img {
+                width: 2.813rem;
+                height: 2.813rem;
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            .type {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+            .temp {
+                font-size: 2rem;
+            }
+        }
+    }
+`;
 
 type WeatherPresentationProps = {
     weather: string;
     temp: number;
 };
+
 const WeatherPresentation = ({ weather, temp }: WeatherPresentationProps) => {
     const [iconURL, setIconURL] = useState("/weatherIcon/thermometer.svg");
 
@@ -27,7 +59,7 @@ const WeatherPresentation = ({ weather, temp }: WeatherPresentationProps) => {
     }, [weather]);
 
     return (
-        <div className="WeatherPresentation">
+        <WeatherPresentationBlock>
             <div className="inner-wrapper">
                 <div className="icon">
                     <img src={iconURL} alt="weather-icon" />
@@ -37,7 +69,7 @@ const WeatherPresentation = ({ weather, temp }: WeatherPresentationProps) => {
                     <span className="temp">{temp}°</span>
                 </div>
             </div>
-        </div>
+        </WeatherPresentationBlock>
     );
 };
 

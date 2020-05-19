@@ -1,8 +1,11 @@
 import React from "react";
+import styled from "styled-components";
+
+const ErrorMessageBlock = styled.div``;
 
 const ErrorMessage = () => {
     return (
-        <div>
+        <ErrorMessageBlock>
             <h1>
                 Oops!{" "}
                 <span role="img" aria-label="oops">
@@ -15,7 +18,7 @@ const ErrorMessage = () => {
                     🛠👩‍🔧
                 </span>
             </p>
-        </div>
+        </ErrorMessageBlock>
     );
 };
 
