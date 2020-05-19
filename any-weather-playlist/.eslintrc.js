@@ -13,7 +13,11 @@ module.exports = {
             jsx: true, // Allows for the parsing of JSX
         },
     },
-    rules: {},
+    rules: {
+        "@typescript-eslint/explicit-function-return-type": {
+            "allowExpressions": true
+          }
+    },
     settings: {
         react: {
             version: "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
