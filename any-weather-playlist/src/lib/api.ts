@@ -11,5 +11,16 @@ export const getWeatherAPI = () =>
         // `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${process.env.REACT_APP_WEATHER_API}`,
     );
 
-export const getSoundCloudURL = (paylist: number) =>
-    `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/${paylist}&color=%23000000&auto_play=true&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true`;
+export const getSoundCloudURL = (weather: string) => {
+    let playlist;
+    if (["clear sky", "clear"].includes(weather)) {
+        playlist = 871183640;
+    } else if (["shower rain", "rain", "thunderstorm"].includes(weather)) {
+        playlist = 871190231;
+    } else if (weather === "snow") {
+        playlist = 871195301;
+    } else {
+        playlist = 871176140;
+    }
+    return `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/${playlist}&color=%23000000&auto_play=true&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true`;
+};

@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -8,12 +7,15 @@ import { createLogger } from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "stores/modules";
 import App from "components/App";
+import ReduxThunk from "redux-thunk";
 
 let middleware;
 
 if (process.env.NODE_ENV !== "production") {
     const logger = createLogger();
-    middleware = composeWithDevTools(applyMiddleware(logger));
+    middleware = composeWithDevTools(applyMiddleware(logger, ReduxThunk));
+} else {
+    middleware = composeWithDevTools(applyMiddleware(ReduxThunk));
 }
 
 const store = createStore(rootReducer, middleware);
@@ -21,9 +23,7 @@ const store = createStore(rootReducer, middleware);
 const Root = () => {
     return (
         <Provider store={store}>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
+            <App />
         </Provider>
     );
 };

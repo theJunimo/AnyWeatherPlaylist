@@ -1,15 +1,8 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import IntroPage from "pages/IntroPage";
+import PageContainer from "containers/PageContainer";
 
 const App = () => {
-    return (
-        <div>
-            <Switch>
-                <Route exact path="/" component={IntroPage} />
-            </Switch>
-        </div>
-    );
+    return <PageContainer />;
 };
 
 export default App;
