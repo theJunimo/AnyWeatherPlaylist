@@ -14,30 +14,7 @@ import EnterUserNameContainer from "./EnterUserNameContainer";
 import LoadingPage from "components/LoadingPage";
 
 const PageContainer = () => {
-    const dispatch = useDispatch();
     const { loading, error, userName } = useSelector((state: RootState) => state.base);
-
-    useEffect(() => {
-        const fetchGetWeather = async () => {
-            dispatch(getWeather());
-            try {
-                // const geo = await getLatLngAPI();
-                // const { lat, lng } = geo.data.location;
-                // google cloud platform 무료 크레딧 종료로 서울 날씨 가져오도록 수정
-                const response = await getWeatherAPI();
-                const weather = {
-                    main: response.data.weather[0].main.toLowerCase(),
-                    // kelvin to celcius formula
-                    temp: Math.ceil(response.data.main.temp - 273.15),
-                };
-                dispatch(getWeatherSuccess(weather));
-            } catch (e) {
-                dispatch(getWeatherFailure());
-            }
-        };
-        fetchGetWeather();
-    }, [dispatch]);
-    console.log("loading", loading);
     return (
         <>
             <Header />
