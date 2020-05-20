@@ -4,12 +4,18 @@ import axios from "axios";
 // export const getLatLngAPI = () =>
 //     axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_GEOLOCATION_API}`);
 
-export const getWeatherAPI = () =>
-    axios.get(
-        //geolocation api 사용종료로 서울 날씨 가져오도록 수정
-        `https://api.openweathermap.org/data/2.5/weather?q=seoul&appid=${process.env.REACT_APP_WEATHER_API}`,
-        // `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${process.env.REACT_APP_WEATHER_API}`,
-    );
+export const getWeatherAPI = (position?: any) => {
+    if (position) {
+        return axios.get(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&APPID=${process.env.REACT_APP_WEATHER_API}`,
+        );
+    } else {
+        return axios.get(
+            //위치정보 사용 거부 시 서울 날씨 가져오도록 수정
+            `https://api.openweathermap.org/data/2.5/weather?q=seoul&appid=${process.env.REACT_APP_WEATHER_API}`,
+        );
+    }
+};
 
 export const getSoundCloudURL = (weather: string) => {
     let playlist;

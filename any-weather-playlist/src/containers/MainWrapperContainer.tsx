@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import MainWrapper from "components/MainWrapper";
 import { useSelector } from "react-redux";
 import { RootState } from "stores/modules";
-import { fetchGetWeather } from "stores/modules/base";
 
 const MainWrapperContainer = () => {
     const { userName, weather } = useSelector((state: RootState) => state.base);
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-        fetchGetWeather();
         if (["clear sky", "clear"].includes(weather)) {
             setMessage("What a nice day!");
         } else if (

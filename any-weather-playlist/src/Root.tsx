@@ -13,7 +13,7 @@ let middleware;
 
 if (process.env.NODE_ENV !== "production") {
     const logger = createLogger();
-    middleware = composeWithDevTools(applyMiddleware(logger, ReduxThunk));
+    middleware = composeWithDevTools(applyMiddleware(ReduxThunk, logger));
 } else {
     middleware = composeWithDevTools(applyMiddleware(ReduxThunk));
 }
