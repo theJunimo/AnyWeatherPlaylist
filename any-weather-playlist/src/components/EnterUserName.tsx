@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import styled from "styled-components";
 import media from "../styles/media";
+import UserNameInput from "./UserNameInput";
 
 const EnterUserNameBlock = styled.div`
     display: flex;
@@ -29,26 +30,6 @@ const EnterUserNameBlock = styled.div`
                 margin-top: 1rem;
         `};
 
-            .username-input {
-                display: flex;
-                width: 15rem;
-                margin-left: 1rem;
-                padding: 0 1rem;
-                padding-bottom: 0;
-                border-bottom: 2px solid black;
-                background-color: #f1f3f5;
-                font-size: 2rem;
-                font-weight: 600;
-                border: none;
-                border-radius: 5px;
-                outline: none;
-
-                ${media("tablet")`
-                margin-left: 0;
-                min-height: 3rem;
-                `};
-            }
-
             .guide-msg {
                 position: absolute;
                 color: #adb5bd;
@@ -69,7 +50,7 @@ const ButtonBlock = styled.button<{ visible: boolean }>`
     visibility: ${(props) => (props.visible ? "visible" : "hidden")};
     margin-left: 1rem;
     border: none;
-    background-color: none;
+    background: none;
     outline: none;
     cursor: pointer;
     img {
@@ -122,13 +103,13 @@ const EnterUserName = ({ onSaveUserName }: EnterUserNameProps) => {
             <div className="content">
                 <p>Welcome,</p>
                 <div className="username-div">
-                    <input
+                    <UserNameInput
                         className="username-input"
                         autoFocus
                         type="text"
                         ref={inputEl}
                         onChange={handleMsgClick}
-                    ></input>
+                    ></UserNameInput>
                     {showMsg && <span className="guide-msg">please enter your name :)</span>}
                     <ButtonBlock visible={!showMsg} onClick={handleSaveUserName}>
                         <img src="/images/arrows.svg" alt="next-button"></img>
