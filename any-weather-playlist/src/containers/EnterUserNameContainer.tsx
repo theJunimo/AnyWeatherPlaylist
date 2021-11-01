@@ -5,10 +5,10 @@ import { saveUserName } from "stores/modules/base";
 import EnterUserName from "components/EnterUserName";
 
 const EnterUserNameContainer = () => {
-    const dispatch = useDispatch();
-    const handleSavingUserName = (userName: string) => dispatch(saveUserName(userName));
+  const dispatch = useDispatch();
+  const handleSavingUserName = (userName: string) => dispatch(saveUserName(userName));
 
-    return <EnterUserName onSaveUserName={handleSavingUserName} />;
+  return <EnterUserName onSaveUserName={handleSavingUserName} />;
 };
 
 export default EnterUserNameContainer;

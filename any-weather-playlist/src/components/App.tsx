@@ -4,13 +4,13 @@ import { useDispatch } from "react-redux";
 import { fetchGetWeather } from "stores/modules/base";
 
 const App = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchGetWeather());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchGetWeather());
+  }, [dispatch]);
 
-    return <PageContainer />;
+  return <PageContainer />;
 };
 
 export default App;

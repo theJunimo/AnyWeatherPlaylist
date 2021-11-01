@@ -11,20 +11,18 @@ import EnterUserNameContainer from "./EnterUserNameContainer";
 import LoadingPage from "components/LoadingPage";
 
 const PageContainer = () => {
-    const { loading, error, userName } = useSelector((state: RootState) => state.base);
+  const { loading, error, userName } = useSelector((state: RootState) => state.base);
 
-    return (
-        <>
-            <Header />
-            <PageTemplate>
-                {loading && <LoadingPage />}
-                {error && <ErrorMessage />}
-                {!loading &&
-                    !error &&
-                    (!userName ? <EnterUserNameContainer /> : <MainWrapperContainer />)}
-            </PageTemplate>
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <PageTemplate>
+        {loading && <LoadingPage />}
+        {error && <ErrorMessage />}
+        {!loading && !error && (!userName ? <EnterUserNameContainer /> : <MainWrapperContainer />)}
+      </PageTemplate>
+    </>
+  );
 };
 
 export default PageContainer;
