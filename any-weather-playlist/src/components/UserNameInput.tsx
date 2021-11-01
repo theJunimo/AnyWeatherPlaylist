@@ -3,15 +3,18 @@ import media from "styles/media";
 
 const UserNameInput = styled.input`
   display: flex;
-  width: 15rem;
+  max-width: 15rem;
   margin-left: 1rem;
   border-bottom: 2px solid black;
   background-color: #fff;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 600;
   border: none;
-  border-bottom: 1px solid black;
   outline: none;
+
+  ::placeholder {
+    color: dee2e6;
+  }
 
   ${media("tablet")`
   margin-left: 0;
