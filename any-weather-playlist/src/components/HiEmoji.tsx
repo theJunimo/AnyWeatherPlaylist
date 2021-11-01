@@ -5,7 +5,7 @@ interface Props {
   fontSize?: string;
 }
 
-const Emoji = styled.span<Props>`
+const Wrapper = styled.div<Props>`
   font-size: ${(props) => props.fontSize};
   margin: 0 0 0 10px;
   display: inline-block;
@@ -137,7 +137,13 @@ const Emoji = styled.span<Props>`
 `;
 
 const HiEmoji = (props: Props) => {
-  return <Emoji {...props}>👋</Emoji>;
+  return (
+    <Wrapper {...props}>
+      <span role="img" aria-label="wavingHand">
+        👋
+      </span>
+    </Wrapper>
+  );
 };
 
 export default HiEmoji;
