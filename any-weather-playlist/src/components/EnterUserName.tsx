@@ -1,52 +1,26 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import styled from "styled-components";
 import media from "../styles/media";
+import Flex from "./Flex";
+import HiEmoji from "./HiEmoji";
 import UserNameInput from "./UserNameInput";
+
+const Content = styled.div`
+  display: flex;
+  font-size: 2.5rem;
+  ${media("tablet")`
+    flex-direction: column;
+  `};
+`;
 
 const EnterUserNameBlock = styled.div`
   display: flex;
   margin: auto 0;
   flex-direction: column;
   font-weight: 600;
-
-  .content {
-    display: flex;
-    font-size: 3rem;
-
-    ${media("tablet")`
-        flex-direction: column;
-        `};
-
-    p,
-    span {
-      margin: auto;
-    }
-
-    .username-div {
-      position: relative;
-      display: flex;
-
-      ${media("tablet")`
-                margin-top: 1rem;
-        `};
-
-      .guide-msg {
-        position: absolute;
-        color: #adb5bd;
-        font-size: 0.9rem;
-        bottom: -1.5rem;
-        left: 2rem;
-        letter-spacing: 1px;
-
-        ${media("tablet")`
-                    left: 0;
-                `};
-      }
-    }
-  }
 `;
 
-const ButtonBlock = styled.button<{ visible: boolean }>`
+const ButtonBlock = styled.button<{ visible?: boolean }>`
   visibility: ${(props) => (props.visible ? "visible" : "hidden")};
   margin-left: 1rem;
   border: none;
@@ -65,7 +39,7 @@ type EnterUserNameProps = {
 
 const EnterUserName = ({ onSaveUserName }: EnterUserNameProps) => {
   const inputEl = useRef<HTMLInputElement>(null);
-  const [showMsg, setShowMsg] = useState(true);
+  const [isButtonShowing, setIsButtonShowing] = useState(false);
 
   const handleSaveUserName = useCallback(() => {
     if (inputEl.current) {
@@ -74,18 +48,18 @@ const EnterUserName = ({ onSaveUserName }: EnterUserNameProps) => {
     }
   }, [onSaveUserName]);
 
-  const handleMsgClick = () => {
-    if (inputEl.current && inputEl.current.value) {
-      setShowMsg(false);
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length > 0) {
+      setIsButtonShowing(true);
     } else {
-      setShowMsg(true);
+      setIsButtonShowing(false);
     }
   };
 
   useEffect(() => {
     const handleUserKeyPress = (e: KeyboardEvent) => {
-      const { keyCode } = e;
-      if (keyCode === 13) {
+      const { key } = e;
+      if (key === "Enter") {
         if (inputEl.current && inputEl.current.value) {
           handleSaveUserName();
         }
@@ -96,26 +70,27 @@ const EnterUserName = ({ onSaveUserName }: EnterUserNameProps) => {
     return () => {
       window.removeEventListener("keydown", handleUserKeyPress);
     };
-  }, [onSaveUserName, handleSaveUserName]);
+  }, [handleSaveUserName]);
 
   return (
     <EnterUserNameBlock>
-      <div className="content">
-        <p>Welcome,</p>
-        <div className="username-div">
+      <Content>
+        <Flex>
+          Hello! <HiEmoji />
+        </Flex>
+        <Flex>
           <UserNameInput
-            className="username-input"
             autoFocus
             type="text"
             ref={inputEl}
-            onChange={handleMsgClick}
+            onChange={handleChangeInput}
+            placeholder="stranger :)"
           ></UserNameInput>
-          {showMsg && <span className="guide-msg">please enter your name :)</span>}
-          <ButtonBlock visible={!showMsg} onClick={handleSaveUserName}>
+          <ButtonBlock visible={isButtonShowing} onClick={handleSaveUserName}>
             <img src="/images/arrows.svg" alt="next-button"></img>
           </ButtonBlock>
-        </div>
-      </div>
+        </Flex>
+      </Content>
     </EnterUserNameBlock>
   );
 };

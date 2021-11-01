@@ -1,30 +1,24 @@
+import Flex from "components/Flex";
 import React from "react";
 import styled from "styled-components";
 
-const HeaderBlock = styled.header`
-  display: flex;
-  flex-direction: column;
-  padding: 1.3rem 0;
-  border-bottom: 1px solid #e8e8e8;
+const H1 = styled.h1`
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+`;
 
-  h1 {
-    margin: 0;
-    text-align: center;
-    font-style: italic;
-  }
-
-  p {
-    margin-bottom: 0;
-    text-align: center;
-  }
+const P = styled.p`
+  margin-bottom: 0;
+  text-align: center;
 `;
 
 const Header = () => {
   return (
-    <HeaderBlock>
-      <h1>AnyWeatherPlayList</h1>
-      <p>Updated Every Saturday</p>
-    </HeaderBlock>
+    <Flex flexDirection="column" padding="1.3rem 0" borderBottom="1px solid #e8e8e8">
+      <H1>AnyWeatherPlayList</H1>
+      <P>Updated Every Saturday</P>
+    </Flex>
   );
 };
 
