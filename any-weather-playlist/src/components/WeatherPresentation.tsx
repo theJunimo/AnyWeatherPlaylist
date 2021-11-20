@@ -1,75 +1,48 @@
-import React, { useState, useEffect } from "react";
+import { getWeatherIcon } from "lib/utils";
+import React from "react";
 import styled from "styled-components";
+import Flex from "./Flex";
 
-const WeatherPresentationBlock = styled.div`
-  margin-top: 1rem;
+const Icon = styled.div`
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
 
-  .inner-wrapper {
-    display: flex;
-    justify-content: center;
-    .icon {
-      margin-right: 1rem;
-      display: flex;
-      align-items: center;
-
-      img {
-        width: 2.813rem;
-        height: 2.813rem;
-      }
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      .type {
-        font-size: 1rem;
-        letter-spacing: 2px;
-      }
-      .temp {
-        font-size: 2rem;
-      }
-    }
+  > img {
+    width: 2.813rem;
+    height: 2.813rem;
   }
 `;
 
-type WeatherPresentationProps = {
+const Span = styled.span<{ fontSize?: string; letterSpacing?: string }>`
+  font-size: ${(props) => props.fontSize};
+  letter-spacing: ${(props) => props.letterSpacing};
+`;
+
+const Wrapper = styled.div`
+  margin-top: 1rem;
+`;
+
+interface Props {
   weather: string;
   temp: number;
-};
+}
 
-const WeatherPresentation = ({ weather, temp }: WeatherPresentationProps) => {
-  const [iconURL, setIconURL] = useState("/weatherIcon/thermometer.svg");
-
-  useEffect(() => {
-    if (["clear sky", "clear"].includes(weather)) {
-      setIconURL("/weatherIcon/sunny.svg");
-    } else if (weather === "clouds") {
-      setIconURL("/weatherIcon/cloud.svg");
-    } else if (["shower rain", "rain"].includes(weather)) {
-      setIconURL("/weatherIcon/rain.svg");
-    } else if (weather === "snow") {
-      setIconURL("/weatherIcon/snow.svg");
-    } else if (["haze", "dust", "mist"].includes(weather)) {
-      setIconURL("/weatherIcon/hazy.svg");
-    } else if (weather === "thunderstorm") {
-      setIconURL("/weatherIcon/thunderstorm.svg");
-    } else {
-      setIconURL("/weatherIcon/thermometer.svg");
-    }
-  }, [weather]);
-
+const WeatherPresentation = ({ weather, temp }: Props) => {
   return (
-    <WeatherPresentationBlock>
-      <div className="inner-wrapper">
-        <div className="icon">
-          <img src={iconURL} alt="weather-icon" />
-        </div>
-        <div className="content">
-          <span className="type">{weather}</span>
-          <span className="temp">{temp}°</span>
-        </div>
-      </div>
-    </WeatherPresentationBlock>
+    <Wrapper>
+      <Flex justifyContent="center">
+        <Icon>
+          <img src={getWeatherIcon(weather)} alt="weather-icon" />
+        </Icon>
+        <Flex flexDirection="column">
+          <Span fontSize="1rem" letterSpacing="2px">
+            {weather}
+          </Span>
+          <Span fontSize="2rem">{temp}°</Span>
+        </Flex>
+      </Flex>
+    </Wrapper>
   );
 };
 

@@ -12,11 +12,11 @@ const PageTemplateBlock = styled.div`
   }
 `;
 
-type PageTemplateProps = {
+interface Props {
   children: ReactNode;
-};
+}
 
-const PageTemplate = ({ children }: PageTemplateProps) => {
+const PageTemplate = ({ children }: Props) => {
   return (
     <PageTemplateBlock>
       <main>{children}</main>

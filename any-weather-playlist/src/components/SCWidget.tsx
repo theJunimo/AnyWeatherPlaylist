@@ -14,11 +14,11 @@ const SCWidgetBlock = styled.div`
         width: 100%`};
 `;
 
-type propsType = {
+interface Props {
   weather: string;
-};
+}
 
-const SCWidget = ({ weather }: propsType) => {
+const SCWidget = ({ weather }: Props) => {
   return (
     <SCWidgetBlock>
       <iframe

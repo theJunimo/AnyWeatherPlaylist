@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { saveUserName } from "stores/modules/base";
 import styled from "styled-components";
 import media from "../styles/media";
 import Flex from "./Flex";
@@ -33,20 +35,17 @@ const ButtonBlock = styled.button<{ visible?: boolean }>`
   }
 `;
 
-type EnterUserNameProps = {
-  onSaveUserName: (userName: string) => void;
-};
-
-const EnterUserName = ({ onSaveUserName }: EnterUserNameProps) => {
+const EnterUserName = () => {
+  const dispatch = useDispatch();
   const inputEl = useRef<HTMLInputElement>(null);
   const [isButtonShowing, setIsButtonShowing] = useState(false);
 
   const handleSaveUserName = useCallback(() => {
     if (inputEl.current) {
       const userName = inputEl.current.value;
-      userName.length > 12 ? onSaveUserName(userName.slice(0, 13)) : onSaveUserName(userName);
+      dispatch(saveUserName(userName.length > 12 ? userName.slice(0, 13) : userName));
     }
-  }, [onSaveUserName]);
+  }, [inputEl, dispatch]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 0) {
