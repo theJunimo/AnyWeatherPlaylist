@@ -6,20 +6,16 @@ import SCWidget from "components/SCWidget";
 import Clock from "components/Clock";
 import Flex from "./Flex";
 import SlideUpAnimation from "./SlideUpAnimation";
-interface Props {
-  userName: string;
-  weather: {
-    main: string;
-    temp: number;
-  };
-  message: string;
-}
+import { useSelector } from "react-redux";
+import { RootState } from "stores/modules";
+import { getMessageByWeather } from "lib/utils";
 
-const MainWrapper = ({ userName, weather, message }: Props) => {
+const MainWrapper = () => {
+  const { userName, weather } = useSelector((state: RootState) => state.base);
   return (
     <Flex flexDirection="column">
       <SlideUpAnimation>
-        <Greetings userName={userName} message={message} />
+        <Greetings userName={userName} message={getMessageByWeather(weather)} />
         <Clock />
         <WeatherPresentation weather={weather.main} temp={weather.temp} />
       </SlideUpAnimation>

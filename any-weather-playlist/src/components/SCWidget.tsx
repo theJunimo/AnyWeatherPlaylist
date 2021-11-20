@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren, PropsWithoutRef } from "react";
 import { getSoundCloudURL } from "lib/api";
 import styled from "styled-components";
 import media from "styles/media";
@@ -14,11 +14,11 @@ const SCWidgetBlock = styled.div`
         width: 100%`};
 `;
 
-type propsType = {
+interface Props {
   weather: string;
-};
+}
 
-const SCWidget = ({ weather }: propsType) => {
+const SCWidget = ({ weather }: Props) => {
   return (
     <SCWidgetBlock>
       <iframe
