@@ -5,10 +5,10 @@ import { RootState } from "stores/modules";
 
 import Header from "components/common/Header";
 import ErrorMessage from "components/ErrorMessage";
-import MainWrapperContainer from "./MainWrapperContainer";
 import PageTemplate from "components/PageTemplate";
-import EnterUserNameContainer from "./EnterUserNameContainer";
 import LoadingPage from "components/LoadingPage";
+import MainWrapper from "components/MainWrapper";
+import EnterUserName from "components/EnterUserName";
 
 const PageContainer = () => {
   const { loading, error, userName } = useSelector((state: RootState) => state.base);
@@ -19,7 +19,7 @@ const PageContainer = () => {
       <PageTemplate>
         {loading && <LoadingPage />}
         {error && <ErrorMessage />}
-        {!loading && !error && (!userName ? <EnterUserNameContainer /> : <MainWrapperContainer />)}
+        {!loading && !error && (!userName ? <EnterUserName /> : <MainWrapper />)}
       </PageTemplate>
     </>
   );
