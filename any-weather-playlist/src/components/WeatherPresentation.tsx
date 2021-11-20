@@ -1,5 +1,5 @@
 import { getWeatherIcon } from "lib/utils";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Flex from "./Flex";
 
@@ -31,7 +31,7 @@ interface Props {
 const WeatherPresentation = ({ weather, temp }: Props) => {
   return (
     <Wrapper>
-      <Flex>
+      <Flex justifyContent="center">
         <Icon>
           <img src={getWeatherIcon(weather)} alt="weather-icon" />
         </Icon>

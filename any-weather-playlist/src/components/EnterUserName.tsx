@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { saveUserName } from "stores/modules/base";
 import styled from "styled-components";
@@ -40,12 +40,12 @@ const EnterUserName = () => {
   const inputEl = useRef<HTMLInputElement>(null);
   const [isButtonShowing, setIsButtonShowing] = useState(false);
 
-  const handleSaveUserName = () => {
+  const handleSaveUserName = useCallback(() => {
     if (inputEl.current) {
       const userName = inputEl.current.value;
       dispatch(saveUserName(userName.length > 12 ? userName.slice(0, 13) : userName));
     }
-  };
+  }, [inputEl, dispatch]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 0) {
