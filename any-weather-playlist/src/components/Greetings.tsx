@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import media from "styles/media";
+import Flex from "./Flex";
+import Span from "./Span";
 
 const GreetingsBlock = styled.div`
   margin: auto;
@@ -8,32 +10,23 @@ const GreetingsBlock = styled.div`
   font-size: 1.2rem;
   letter-spacing: 2px;
 
-  .content {
-    display: flex;
-    justify-content: center;
-
-    span {
-      text-align: center;
-    }
-
-    ${media("tablet")`
+  ${media("tablet")`
             flex-direction: column;        
         `}
-  }
 `;
 
-type propsType = {
+interface Props {
   userName: string;
   message: string;
-};
+}
 
-const Greetings = ({ userName, message }: propsType) => {
+const Greetings = ({ userName, message }: Props) => {
   return (
     <GreetingsBlock>
-      <div className="content">
-        <span>{`${userName},`} &nbsp; </span>
-        <span>{message}</span>
-      </div>
+      <Flex>
+        <Span>{`${userName},`} &nbsp; </Span>
+        <Span>{message}</Span>
+      </Flex>
     </GreetingsBlock>
   );
 };
