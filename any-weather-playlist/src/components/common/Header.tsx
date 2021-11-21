@@ -27,7 +27,14 @@ const Header = () => {
     <Flex flexDirection="column" padding="1.3rem 0" borderBottom="1px solid #e8e8e8">
       <H1>AnyWeatherPlayList</H1>
       <P>Updated Every Saturday</P>
-      {city !== "" && <CityName>📍{city}</CityName>}
+      {city !== "" && (
+        <CityName>
+          <span role="img" aria-label="pin">
+            📍
+          </span>
+          {city}
+        </CityName>
+      )}
     </Flex>
   );
 };
