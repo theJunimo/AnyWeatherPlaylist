@@ -15,9 +15,11 @@ const MainWrapper = () => {
   return (
     <Flex flexDirection="column">
       <SlideUpAnimation>
-        <Greetings userName={userName} message={getMessageByWeather(weather)} />
-        <Clock />
-        <WeatherPresentation weather={weather.main} temp={weather.temp} />
+        <Flex flexDirection="column" justifyContent="center">
+          <Greetings userName={userName} message={getMessageByWeather(weather)} />
+          <Clock />
+          <WeatherPresentation weather={weather.main} temp={weather.temp} />
+        </Flex>
       </SlideUpAnimation>
       <SCWidget weather={weather.main} />
     </Flex>
