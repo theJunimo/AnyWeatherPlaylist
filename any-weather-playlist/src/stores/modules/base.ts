@@ -69,6 +69,7 @@ type InitialStateType = {
     main: string;
     temp: number;
   };
+  city: string;
 };
 
 //initialState
@@ -80,7 +81,7 @@ const initialState = {
     main: "error",
     temp: 0,
   },
-  city: "Seoul",
+  city: "",
 };
 
 //리듀서
