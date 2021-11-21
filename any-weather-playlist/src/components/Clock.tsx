@@ -6,37 +6,37 @@ const ClockBlock = styled.div`
   text-align: center;
   font-size: 1.5rem;
   letter-spacing: 2px;
+`;
 
-  .colon {
-    margin: 0 0.5rem;
-    font-size: 2rem;
-    animation: blink 2s step-start 0s infinite;
-    -webkit-animation: blink 2s step-start 0s infinite;
-    -moz-animation: blink 2s step-start 0s infinite;
-    -ms-animation: blink 2s step-start 0s infinite;
+const BlickedColon = styled.span`
+  margin: 0 0.5rem;
+  font-size: 2rem;
+  animation: blink 2s step-start 0s infinite;
+  -webkit-animation: blink 2s step-start 0s infinite;
+  -moz-animation: blink 2s step-start 0s infinite;
+  -ms-animation: blink 2s step-start 0s infinite;
 
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
+  @keyframes blink {
+    50% {
+      opacity: 0;
     }
+  }
 
-    @-moz-keyframes blink {
-      50% {
-        opacity: 0;
-      }
+  @-moz-keyframes blink {
+    50% {
+      opacity: 0;
     }
+  }
 
-    @-webkit-keyframes blink {
-      50% {
-        opacity: 0;
-      }
+  @-webkit-keyframes blink {
+    50% {
+      opacity: 0;
     }
+  }
 
-    @-ms-keyframes blink {
-      50% {
-        opacity: 0;
-      }
+  @-ms-keyframes blink {
+    50% {
+      opacity: 0;
     }
   }
 `;
@@ -63,7 +63,7 @@ const Clock = () => {
   return (
     <ClockBlock>
       <span>{hh}</span>
-      <span className="colon">:</span>
+      <BlickedColon>:</BlickedColon>
       <span>{mm}</span>
     </ClockBlock>
   );
