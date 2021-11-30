@@ -7,6 +7,7 @@ const SAVE_USERNAME = "base/SAVE_USERNAME" as const;
 const GET_WEATHER = "base/GET_WEATHER" as const;
 const GET_WEATHER_SUCCESS = "base/GET_WEATHER_SUCCESS" as const;
 const GET_WEATHER_FAILURE = "base/GET_WEATHER_FAILURE" as const;
+const LOADING = "base/LOADING" as const;
 
 //action 생성함수
 export const saveUserName = (userName: string) => ({ type: SAVE_USERNAME, payload: userName });
@@ -16,19 +17,22 @@ export const getWeatherSuccess = (weather: any) => ({
   payload: weather,
 });
 export const getWeatherFailure = () => ({ type: GET_WEATHER_FAILURE });
+export const loading = () => ({ type: LOADING });
 
 //action객체에 대한 ts type
 type ActionType =
   | ReturnType<typeof saveUserName>
   | ReturnType<typeof getWeather>
   | ReturnType<typeof getWeatherSuccess>
-  | ReturnType<typeof getWeatherFailure>;
+  | ReturnType<typeof getWeatherFailure>
+  | ReturnType<typeof loading>;
 
 export const fetchGetWeather = (): ThunkAction<void, RootState, null, ActionType> => {
   return async (dispatch) => {
     dispatch(getWeather());
     try {
       if (navigator.geolocation) {
+        dispatch(loading);
         await navigator.geolocation.getCurrentPosition(
           async (data) => {
             let position;
@@ -94,6 +98,7 @@ const base = (state: InitialStateType = initialState, action: ActionType) => {
         userName,
       };
     case GET_WEATHER:
+    case LOADING:
       return {
         ...state,
         loading: true,
