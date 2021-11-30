@@ -22,7 +22,7 @@ const LoadingPageBlock = styled.div`
     width: 6px;
     height: 18px;
     border-radius: 20%;
-    background: #fff;
+    background: black;
   }
   .lds-spinner div:nth-child(1) {
     transform: rotate(0deg);
